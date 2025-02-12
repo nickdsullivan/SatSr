@@ -59,12 +59,13 @@ def evaluate(validation_loader,
             loss += loss_fn(high_res_predicted, high_res_resized).item()
             n = n + 1
             image_dir = f"timescale/{timestep}"
-            # os.makedirs(f"{image_dir}", exist_ok=True)
-            # save_image(noisey_low_res[0],image_dir + f"/{timestep}_noisey_low_res")
-            # save_image(high_res[0],image_dir + f"/{timestep}_high_res")
-            # save_image(high_res_predicted[0],image_dir + f"/{timestep}_high_res_predicted")
-            # save_image(low_res[0],image_dir + "/low_res")
-            # print(f"{n} | {loss/n:.4f}")
+            if n % 50 == 0:
+                os.makedirs(f"{image_dir}", exist_ok=True)
+                save_image(noisey_low_res[0],image_dir + f"/{timestep}_noisey_low_res")
+                save_image(high_res[0],image_dir + f"/{timestep}_high_res")
+                save_image(high_res_predicted[0],image_dir + f"/{timestep}_high_res_predicted")
+                save_image(low_res[0],image_dir + "/low_res")
+            print(f"{n} | {loss/n:.4f}")
            
 
     return loss/n

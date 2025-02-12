@@ -3,14 +3,13 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 import torchvision.transforms as transforms
 
-
 from diffusers import UNet2DConditionModel, AutoencoderKL
 from dataset import SuperResDataset, get_datasets
-from train import train
 
-from vae_finetuning import train_vae
-from evaluate import evaluate
 import argparse
+from train import train
+from evaluate import evaluate
+
 
 parser = argparse.ArgumentParser(description="Script to run model training")
 parser.add_argument('--checkpoint_vae', type=str, default=None, help='Path to the checkpoint file')
